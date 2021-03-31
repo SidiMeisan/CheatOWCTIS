@@ -17,9 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Router For Patient
+Route::get('/patient/', function () {
+    return view('patient/home');
+});  
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::group(['middleware' => 'role:super-admin'], function() {
+// });
 
 Auth::routes();
 
