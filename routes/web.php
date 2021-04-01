@@ -38,3 +38,7 @@ Route::get('/example/', function () {
 Route::get('/example/login', function () {
     return view('example/auth/login');
 });
+
+Route::get('/example/Manager/new', function () {
+    return view('example/auth/managerNew');
+});
