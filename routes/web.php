@@ -29,3 +29,12 @@ Route::get('/patient/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Router For Patient
+Route::get('/example/', function () {
+    return view('example/index');
+});
+
+Route::get('/example/login', function () {
+    return view('example/auth/login');
+});

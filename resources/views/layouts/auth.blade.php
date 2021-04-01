@@ -5,9 +5,8 @@
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        @include('layouts.Part.header')
+        @include('layouts.Part.headerAuth')
         <div class="app-main">
-            @include('layouts.Part.sidebar')
             @yield('content')
         </div>
     </div>
