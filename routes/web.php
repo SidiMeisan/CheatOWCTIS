@@ -42,3 +42,20 @@ Route::get('/example/login', function () {
 Route::get('/example/Manager/new', function () {
     return view('example/auth/managerNew');
 });
+
+
+Route::get('/example/Tester/', function () {
+    return view('example/Tester/home');
+});
+
+Route::get('/example/Tester/new', function () {
+    return view('example/Tester/new');
+});
+
+Route::get('/example/Tester/update', function () {
+    return view('example/Tester/new');
+});
+
+Route::get('/example/Tester/result', function () {
+    return view('example/Tester/result');
+});
