@@ -13,36 +13,13 @@
                                     <form method="POST" action="#">
                                         @csrf
 
-
-                                        <div class="form-group row">
-                                            <label for="Patient" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Patient') }}
-                                            </label>
-
-                                            <div class="col-md-6">
-                                                <select name="Patient" id="Patient"
-                                                class="form-control js-patient-single">
-                                                    <option value="volvo">Volvo</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
-                                                </select>
-
-                                                @error('Patient')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
                                         <div class="form-group row">
                                             <label for="Kits" class="col-md-4 col-form-label text-md-right">
                                                 {{ __('Kits') }}
                                             </label>
 
                                             <div class="col-md-6">
-                                                <select name="Kits" id="Kits"
+                                                <select name="Result" id="Result"
                                                 class="form-control js-kit-single">
                                                     <option value="volvo">Volvo</option>
                                                     <option value="saab">Saab</option>
@@ -50,29 +27,7 @@
                                                     <option value="audi">Audi</option>
                                                 </select>
 
-                                                @error('Kits')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="symptoms" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Symptoms') }}
-                                            </label>
-
-                                            <div class="col-md-6">
-                                                <select name="symptoms[]" id="symptoms"
-                                                class="form-control js-symptoms-multiple" multiple="multiple">
-                                                    <option value="volvo">Volvo</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
-                                                </select>
-
-                                                @error('symptoms')
+                                                @error('Result')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
