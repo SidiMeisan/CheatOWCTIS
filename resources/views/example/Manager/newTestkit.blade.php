@@ -7,19 +7,41 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="main-card mb-6 card">
-                                <div class="card-header">New Test Centre
+                                <div class="card-header">New Test Kit
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="#">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="TestCentre_Name" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Test CentreName"') }}
+                                            <label for="name" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Test Kit Name"') }}
                                             </label>
                                             <div class="col-md-6">
-                                                <input id="TestCentre_Name" type="text" class="form-control @error('TestCentre_Name') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                <input id="name" type="text" class="form-control 
+                                                    @error('name') is-invalid @enderror" 
+                                                    name="name" value="{{ old('name') }}" 
+                                                    required  autofocus>
 
-                                                @error('TestCentre_Name')
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="form-group row">
+                                            <label for="name" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Quantity"') }}
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input id="name" type="text" class="form-control 
+                                                    @error('name') is-invalid @enderror" 
+                                                    name="name" value="{{ old('name') }}" 
+                                                    required  autofocus>
+
+                                                @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -34,7 +56,6 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        
                                     </form>
                                 </div>
                             </div>

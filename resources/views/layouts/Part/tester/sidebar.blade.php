@@ -42,10 +42,6 @@
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         New Test
                     </a>
-                    <a href="index.html" class="">
-                        <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
-                        Update Results
-                    </a>
                 </li>
             </ul>
         </div>

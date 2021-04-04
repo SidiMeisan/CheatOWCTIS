@@ -43,6 +43,22 @@ Route::get('/example/Manager/new', function () {
     return view('example/auth/managerNew');
 });
 
+Route::get('/example/Manager/Tester/', function () {
+    return view('example/Manager/tester');
+});
+
+Route::get('/example/Manager/Tester/new', function () {
+    return view('example/auth/testerNew');
+});
+
+Route::get('/example/Manager/kit', function () {
+    return view('example/Manager/test');
+});
+
+Route::get('/example/Manager/kit/new', function () {
+    return view('example/Manager/newTestkit');
+});
+
 
 Route::get('/example/Tester/', function () {
     return view('example/Tester/home');
@@ -58,4 +74,13 @@ Route::get('/example/Tester/update', function () {
 
 Route::get('/example/Tester/result', function () {
     return view('example/Tester/result');
+});
+
+
+Route::get('/example/Patient/', function () {
+    return view('example/Patient/home');
+});
+
+Route::get('/example/Patient/symptoms', function () {
+    return view('example/auth/patientNew');
 });

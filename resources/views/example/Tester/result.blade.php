@@ -14,12 +14,12 @@
                                         @csrf
 
                                         <div class="form-group row">
-                                            <label for="Kits" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Kits') }}
+                                            <label for="status" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Status') }}
                                             </label>
 
                                             <div class="col-md-6">
-                                                <select name="Result" id="Result"
+                                                <select name="status" id="status"
                                                 class="form-control js-kit-single">
                                                     <option value="volvo">Volvo</option>
                                                     <option value="saab">Saab</option>
@@ -27,7 +27,29 @@
                                                     <option value="audi">Audi</option>
                                                 </select>
 
-                                                @error('Result')
+                                                @error('status')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="result" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Result') }}
+                                            </label>
+
+                                            <div class="col-md-6">
+                                                <select name="result" id="result"
+                                                class="form-control js-kit-single">
+                                                    <option value="volvo">Volvo</option>
+                                                    <option value="saab">Saab</option>
+                                                    <option value="mercedes">Mercedes</option>
+                                                    <option value="audi">Audi</option>
+                                                </select>
+
+                                                @error('result')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -54,10 +76,6 @@
 @endsection
 
 @section('customejs')
-
-<script>
-    
-</script>
 
 <script>
     $(document).ready(function() {
