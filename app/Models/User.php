@@ -10,6 +10,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    /**
+     * The attributes to assign tabble name
+     */
+    protected $table = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +22,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
+        'as',
     ];
 
     /**
@@ -32,12 +37,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    # Get User Id 
+    public function getID(){
+      return $this->id;
+    }
+
+    public function getAs(){
+        return $this->as;
+    }
 }

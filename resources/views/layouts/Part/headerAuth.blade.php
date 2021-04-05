@@ -31,12 +31,14 @@
                         Home
                     </a>
                 </li>
+                @if (Auth::guest())
                 <li class="btn-group nav-item">
                     <a href="javascript:void(0);" class="nav-link">
                         <!-- <i class="nav-link-icon fa fa-edit"></i> -->
                         Login
                     </a>
                 </li>
+                @endif
             </ul>        
         </div>
     </div>

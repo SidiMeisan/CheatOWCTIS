@@ -7,22 +7,20 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="main-card mb-12 card">
-                                <div class="card-body"><h5 class="card-title">COVID Test Results</h5>
+                                <div class="card-body"><h5 class="card-title">Tester</h5>
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Patient</th>
-                                            <th>Test date</th>
-                                            <th>Results</th>
+                                            <th>Name</th>
+                                            <th>Username</th>
                                             <th>Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Patient Name</td>
-                                            <td>12/12/2020</td>
+                                            <td>-</td>
                                             <td>-</td>
                                             <td>-</td>
                                         </tr>

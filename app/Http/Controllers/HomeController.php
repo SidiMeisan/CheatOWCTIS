@@ -1,8 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Patient;
+use App\Models\centre_officer;
+use App\Models\test_centre;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +30,59 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $thisUser = Auth::user()->getAs();
+        if($thisUser=="guest"){
+            return redirect('pickLevel');
+        }elseif($thisUser=="Manager"){
+            return redirect('/Manager');
+        }else{
+            return redirect('/Tester');
+        }
     }
+
+    public function formPick(){
+        return view('pickLevel');
+    }
+
+    public function Pick(Request $request){
+        $thisUser = Auth::user()->getID();
+        $request->validate([
+            'Pick' => 'required'
+        ]);
+        
+        if ($request->Pick=="Patient") {
+            $newPatient = new Patient;
+            $newPatient->user_id = $thisUser;
+            $newPatient->save();
+
+            $updateUser = User::find($thisUser);
+            $updateUser->as = $request->Pick;
+            $updateUser->save();
+        } else{
+            $updateUser = User::find($thisUser);
+            $updateUser->as = $request->Pick;
+            $updateUser->save();
+            return redirect('Manager/new');
+        }
+    }
+
+
+    // manager section
+    
+    Public function Manager(){
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return redirect('Manager/new');
+        }else{
+            return redirect('Manager/home');
+        }
+    }
+
+    Public function managerHome(){
+        return view('Manager/home');
+    }
+
+    // end manager section 
 }
