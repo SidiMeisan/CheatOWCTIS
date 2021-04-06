@@ -45,4 +45,24 @@ class User extends Authenticatable
     public function getAs(){
         return $this->as;
     }
+
+    /**
+     * Get the officer associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function officer()
+    {
+        return $this->hasOne(centre_officer::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the Patient associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function Patient()
+    {
+        return $this->hasOne(Patient::class, 'user_id', 'id');
+    }
 }

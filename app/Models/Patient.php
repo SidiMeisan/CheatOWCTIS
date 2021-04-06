@@ -24,4 +24,11 @@ class Patient extends Model
         'type',
         'symptoms',
     ];
+    
+    public $timestamps = false;
+
+    public function Users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

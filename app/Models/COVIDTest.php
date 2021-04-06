@@ -28,4 +28,19 @@ class COVIDTest extends Model
         'result',
         'status',
     ];
+
+    public function Patients()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id', 'id');
+    }
+
+    public function Kits()
+    {
+        return $this->belongsTo(test_kit::class, 'test_kit_id', 'id');
+    }
+
+    public function Office()
+    {
+        return $this->belongsTo(centre_office::class, 'centre_office_id', 'id');
+    }
 }

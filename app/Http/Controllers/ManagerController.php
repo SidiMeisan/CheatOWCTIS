@@ -48,7 +48,13 @@ class ManagerController extends Controller
 
     public function Testers()
     {
-        return view('Manager/tester');
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Testers = centre_officer::where('test_centre_id','=',$this_centre_officer)
+            ->wherehas('Users',function($q){
+                $q->where('as','=','Tester');
+            })
+            ->get();
+        return view('Manager/tester', ['Testers'=>$Testers]);
     }
 
     public function newTesters()
@@ -84,12 +90,16 @@ class ManagerController extends Controller
         $updateUser = User::find($newUser->id);
         $updateUser->as = "Tester";
         $updateUser->save();
+        
         return redirect('Manager/testers');
     }
 
     public function testkits()
     {
-        return view('Manager/test');
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Kits = test_kit::where('test_centre_id','=',$this_centre_officer)
+            ->get();
+        return view('Manager/test', ['Kits'=>$Kits]);
     }
 
     public function newtestkits()
@@ -99,22 +109,19 @@ class ManagerController extends Controller
 
     public function savetestkits(Request $request)
     {
-        $thisUser = Auth::user()->getID();
-
-        $this_centre_officer = centre_officer::where('user_id', '=', $thisUser)
-            ->first();
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
         
         $request->validate([
             'name' => 'required',
-            'Quantity' => 'Quantity',
+            'Quantity' => 'required',
         ]);
 
-        $newUser = new User;
-        $newUser->name = $request->name;
-        $newUser->test_centre_id = $this_centre_officer;
-        $newUser->available = $request->Quantity;
-        $newUser->save();
+        $newKit = new test_kit;
+        $newKit->name = $request->name;
+        $newKit->test_centre_id = $this_centre_officer;
+        $newKit->available = $request->Quantity;
+        $newKit->save();
         
-        return redirect('Manager/testkits/');
+        return redirect('Manager/testkits');
     }
 }

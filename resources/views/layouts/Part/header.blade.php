@@ -69,19 +69,25 @@
                                         class="dropdown-item">
                                         User Account
                                     </button>
-                                    <button type="button" tabindex="0" 
+                                    <a href="{{url('/logout')}}" tabindex="0" 
                                         class="dropdown-item">
                                         Logout
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
+                                {{Auth::user()->name}}
                             </div>
                             <div class="widget-subheading">
-                                Test Centere Manager
+                                @if(Auth::user()->as == "Patient")
+                                    Patient
+                                @elseif(Auth::user()->as == "Manager")
+                                    Test Centre Manager
+                                @elseif(Auth::user()->as == "Tester")
+                                    Test Centre Tester
+                                @endif
                             </div>
                         </div>
                     </div>

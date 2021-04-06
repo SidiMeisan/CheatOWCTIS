@@ -20,7 +20,7 @@
                                             <div class="col-md-6">
                                                 <input id="username" type="text" 
                                                     class="form-control @error('username') 
-                                                        is-invalid @enderror" name="email" 
+                                                        is-invalid @enderror" name="username" 
                                                     value="{{ old('username') }}" 
                                                     required autofocus>
 
@@ -31,6 +31,7 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
                                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -52,6 +53,10 @@
                                                 <button type="submit" class="btn btn-primary">
                                                     {{ __('Login') }}
                                                 </button>
+                                                <a href="{{url('/register')}}"
+                                                    class="btn btn-primary">
+                                                    {{ __('Register') }}
+                                                </a>
                                             </div>
                                         </div>
                                     </form>

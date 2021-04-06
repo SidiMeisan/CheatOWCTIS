@@ -18,12 +18,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        
+                                        @foreach($Testers as $data => $Tester)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>-</td>
-                                            <td>-</td>
+                                            <th scope="row">{{$data+1}}</th>
+                                            <td>{{$Tester->Users->name}}</td>
+                                            <td>{{$Tester->Users->username}}</td>
                                             <td>-</td>
                                         </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Patient;
 use App\Models\centre_officer;
 use App\Models\test_centre;
+use App\Models\COVIDTest;
 
 
 class HomeController extends Controller
@@ -23,6 +24,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function logout() 
+    {
+        //logout user
+        auth()->logout();
+        // redirect to homepage
+        return redirect('/');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -33,10 +42,12 @@ class HomeController extends Controller
         $thisUser = Auth::user()->getAs();
         if($thisUser=="guest"){
             return redirect('pickLevel');
+        }elseif($thisUser=="Patient"){
+            return redirect('/Patient/home');
         }elseif($thisUser=="Manager"){
             return redirect('/Manager');
         }else{
-            return redirect('/Tester');
+            return redirect('/Tester/home');
         }
     }
 
@@ -58,6 +69,8 @@ class HomeController extends Controller
             $updateUser = User::find($thisUser);
             $updateUser->as = $request->Pick;
             $updateUser->save();
+            
+            return redirect('/home');
         } else{
             $updateUser = User::find($thisUser);
             $updateUser->as = $request->Pick;
@@ -81,8 +94,27 @@ class HomeController extends Controller
     }
 
     Public function managerHome(){
-        return view('Manager/home');
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
+        return view('Manager/home', ['tests'=>$tests]);
     }
-
     // end manager section 
+
+    // patient  section
+    Public function patientHome(){
+        $this_Patient_id= Auth::user()->Patient->id;
+        $tests = COVIDTest::where('patient_id', '=', $this_Patient_id)->get();
+        return view('Patient/home', ['tests'=>$tests]);
+    }
+    // end patient  section
+
+    
+    // tester  section
+    
+    Public function testerHome(){
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
+        return view('Tester/home', ['tests'=>$tests]);
+    }
+    // end tester  section
 }

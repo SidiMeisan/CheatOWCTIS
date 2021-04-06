@@ -26,14 +26,14 @@
         <div class="app-header-left">
             <ul class="header-menu nav">
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                    <a href="{{url('/')}}" class="nav-link">
                         <!-- <i class="nav-link-icon fa fa-database"> </i> -->
                         Home
                     </a>
                 </li>
                 @if (Auth::guest())
                 <li class="btn-group nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                    <a href="{{url('/login')}}" class="nav-link">
                         <!-- <i class="nav-link-icon fa fa-edit"></i> -->
                         Login
                     </a>

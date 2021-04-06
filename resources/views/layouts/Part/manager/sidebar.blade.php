@@ -34,7 +34,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Test Covid</li>
                 <li>
-                    <a href="index.html" class="mm-active">
+                    <a href="{{url('/Manager/home')}}" class="mm-active">
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         Test Results
                     </a>
@@ -42,13 +42,13 @@
                 
                 <li class="app-sidebar__heading">Tester</li>
                 <li>
-                    <a href="#">
+                    <a href="{{url('/Manager/testers/')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         Testers
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{url('/Manager/testers/new')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         New Testers
                     </a>
@@ -56,19 +56,19 @@
                 
                 <li class="app-sidebar__heading">Test KIt</li>
                 <li>
-                    <a href="#">
+                    <a href="{{url('/Manager/testkits')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         Test Kits
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{url('/Manager/testkits/new')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         New Test Kits
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{url('/Manager/testkits/add')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         Add Test Kits
                     </a>

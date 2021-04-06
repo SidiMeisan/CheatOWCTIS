@@ -18,13 +18,8 @@ use App\Http\Controllers\TesterController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
-
-// Router For Patient
-Route::get('/patient/', function () {
-    return view('patient/home');
-});  
 
 
 // Route::group(['middleware' => 'role:super-admin'], function() {
@@ -32,12 +27,18 @@ Route::get('/patient/', function () {
 
 Auth::routes();
 
+
+// After login
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
 
 Route::get('/pickLevel', [HomeController::class, 'formPick'])->name('pickLevel');
 Route::post('/pickLevel',  [HomeController::class, 'Pick'])->name('pick');
 Route::get('/Manager', [HomeController::class, 'Manager'])->name('Manager');
 Route::get('/Manager/home', [HomeController::class, 'managerHome'])->name('managerHome');
+Route::get('/Tester/home', [HomeController::class, 'testerHome'])->name('testerHome');
+Route::get('/Patient/home', [HomeController::class, 'patientHome'])->name('patientHome');
 
 
 Route::get('/Manager/new', [ManagerController::class, 'newManager'])->name('newManager');
@@ -50,6 +51,16 @@ Route::post('/Manager/testers/new', [ManagerController::class, 'saveTesters'])->
 Route::get('/Manager/testkits/', [ManagerController::class, 'testkits'])->name('testkits');
 Route::get('/Manager/testkits/new', [ManagerController::class, 'newtestkits'])->name('newtestkits');
 Route::post('/Manager/testkits/new', [ManagerController::class, 'savetestkits'])->name('savetestkits');
+
+
+Route::get('/Tester/test/', [TesterController::class, 'test'])->name('test');
+Route::get('/Tester/test/new', [TesterController::class, 'newTest'])->name('newTest');
+Route::post('/Tester/test/new', [TesterController::class, 'saveTest'])->name('saveTest');
+
+Route::get('/Tester/test/result/{id}', [TesterController::class, 'newResult'])->name('newResult');
+Route::post('/Tester/test/result/{id}', [TesterController::class, 'saveResult'])->name('saveResult');
+
+
 
 // Router For Patient
 Route::get('/example/', function () {

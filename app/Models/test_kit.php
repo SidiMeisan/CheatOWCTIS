@@ -24,4 +24,14 @@ class test_kit extends Model
         'name',
         'available',
     ];
+
+    /**
+     * Get the Centre that owns the test_kit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Centre()
+    {
+        return $this->belongsTo(test_centre::class, 'test_centre_id', 'id');
+    }
 }

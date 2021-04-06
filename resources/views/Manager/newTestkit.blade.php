@@ -14,7 +14,7 @@
                                         @csrf
                                         <div class="form-group row">
                                             <label for="name" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Test Kit Name"') }}
+                                                {{ __('Test Kit Name') }}
                                             </label>
                                             <div class="col-md-6">
                                                 <input id="name" type="text" class="form-control 
@@ -33,7 +33,7 @@
                                         
                                         <div class="form-group row">
                                             <label for="Quantity" class="col-md-4 col-form-label text-md-right">
-                                                {{ __('Quantity"') }}
+                                                {{ __('Quantity') }}
                                             </label>
                                             <div class="col-md-6">
                                                 <input id="Quantity" type="text" class="form-control 

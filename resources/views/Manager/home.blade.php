@@ -19,13 +19,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($tests as $index => $thisTest)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Patient Name</td>
-                                            <td>12/12/2020</td>
-                                            <td>-</td>
-                                            <td>-</td>
+                                            <th scope="row">{{$index}}</th>
+                                            <td>{{$thisTest->Patients->Users->name}}</td>
+                                            <td>{{$thisTest->test_date}}</td>
+                                            <td>{{$thisTest->result}}</td>
+                                            <td>{{$thisTest->status}}</td>
                                         </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
