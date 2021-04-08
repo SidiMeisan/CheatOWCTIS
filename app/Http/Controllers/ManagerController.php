@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Models\centre_officer;
 use App\Models\test_centre;
 use App\Models\test_kit;
+use App\Models\COVIDTest;
 
 class ManagerController extends Controller
 {
@@ -30,11 +31,11 @@ class ManagerController extends Controller
         $thisUser = Auth::user()->getID();
 
         $request->validate([
-            'TestCentre_Name' => 'required'
+            'name' => ['required', 'unique:test_centre'],
         ]);
 
         $newCentre = new test_centre;
-        $newCentre->name = $request->TestCentre_Name;
+        $newCentre->name = $request->name;
         $newCentre->save();
 
         $newOfficer = new centre_officer;
@@ -44,6 +45,13 @@ class ManagerController extends Controller
         $newOfficer->save();
 
         return redirect('Manager/home');
+    }
+
+    public function covidTest()
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
+        return view('Manager/COVIDTest', ['tests'=>$tests]);
     }
 
     public function Testers()
@@ -67,9 +75,9 @@ class ManagerController extends Controller
         $thisUser = Auth::user()->getID();
         
         $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'password' => 'required',
+            'name' => ['required', 'string', 'max:40'],
+            'username' => ['required', 'string', 'max:30', 'unique:user'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $this_centre_officer = centre_officer::where('user_id', '=', $thisUser)

@@ -1,4 +1,4 @@
-@extends('layouts.manager')
+@extends('layouts.auth')
 @section('content')
     <div class="app-main__outer">
         <div class="app-main__inner">
@@ -17,13 +17,13 @@
                                                 {{ __('Test Centre Name') }}
                                             </label>
                                             <div class="col-md-6">
-                                                <input id="TestCentre_Name" type="text" 
-                                                class="form-control @error('TestCentre_Name') 
-                                                is-invalid @enderror" name="TestCentre_Name" 
-                                                value="{{ old('emTestCentre_Nameail') }}" 
-                                                required autocomplete="TestCentre_Name" autofocus>
+                                                <input id="name" type="text" 
+                                                class="form-control @error('name') 
+                                                is-invalid @enderror" name="name" 
+                                                value="{{ old('name') }}" 
+                                                required autocomplete="name" autofocus>
 
-                                                @error('TestCentre_Name')
+                                                @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -38,7 +38,6 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        
                                     </form>
                                 </div>
                             </div>

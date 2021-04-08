@@ -34,7 +34,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Test Covid</li>
                 <li>
-                    <a href="{{url('/Manager/home')}}" class="mm-active">
+                    <a href="{{url('Manager/test/')}}" class="mm-active">
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         Test Results
                     </a>

@@ -12,11 +12,19 @@ use App\Models\COVIDTest;
 
 class TesterController extends Controller
 {
+    public function covidTest()
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
+        return view('Tester/COVIDTest', ['tests'=>$tests]);
+    }
+
     public function newTest()
     {
         $Patients = Patient::all();
-        $Kits = test_kit::all();
-
+        
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Kits = test_kit::where('test_centre_id', '=', $this_centre_officer)->get();
         return view('Tester/new', ['Patients'=>$Patients,'Kits'=>$Kits]);
     }
 

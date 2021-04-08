@@ -94,17 +94,13 @@ class HomeController extends Controller
     }
 
     Public function managerHome(){
-        $this_centre_officer = Auth::user()->officer->test_centre_id;
-        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
-        return view('Manager/home', ['tests'=>$tests]);
+        return view('Manager/home');
     }
     // end manager section 
 
     // patient  section
     Public function patientHome(){
-        $this_Patient_id= Auth::user()->Patient->id;
-        $tests = COVIDTest::where('patient_id', '=', $this_Patient_id)->get();
-        return view('Patient/home', ['tests'=>$tests]);
+        return view('Patient/home');
     }
     // end patient  section
 
@@ -112,9 +108,7 @@ class HomeController extends Controller
     // tester  section
     
     Public function testerHome(){
-        $this_centre_officer = Auth::user()->officer->test_centre_id;
-        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
-        return view('Tester/home', ['tests'=>$tests]);
+        return view('Tester/home');
     }
     // end tester  section
 }

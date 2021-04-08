@@ -35,82 +35,38 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 Route::get('/pickLevel', [HomeController::class, 'formPick'])->name('pickLevel');
 Route::post('/pickLevel',  [HomeController::class, 'Pick'])->name('pick');
-Route::get('/Manager', [HomeController::class, 'Manager'])->name('Manager');
-Route::get('/Manager/home', [HomeController::class, 'managerHome'])->name('managerHome');
-Route::get('/Tester/home', [HomeController::class, 'testerHome'])->name('testerHome');
-Route::get('/Patient/home', [HomeController::class, 'patientHome'])->name('patientHome');
-
-
 Route::get('/Manager/new', [ManagerController::class, 'newManager'])->name('newManager');
 Route::post('/Manager/new', [ManagerController::class, 'saveManager'])->name('saveManager');
 
-Route::get('/Manager/testers/', [ManagerController::class, 'Testers'])->name('Testers');
-Route::get('/Manager/testers/new', [ManagerController::class, 'newTesters'])->name('newTesters');
-Route::post('/Manager/testers/new', [ManagerController::class, 'saveTesters'])->name('saveTesters');
 
-Route::get('/Manager/testkits/', [ManagerController::class, 'testkits'])->name('testkits');
-Route::get('/Manager/testkits/new', [ManagerController::class, 'newtestkits'])->name('newtestkits');
-Route::post('/Manager/testkits/new', [ManagerController::class, 'savetestkits'])->name('savetestkits');
+Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(function () {
+    Route::get('/', [HomeController::class, 'Manager'])->name('Manager');
+    Route::get('/home', [HomeController::class, 'managerHome'])->name('managerHome');
+    Route::get('/test', [ManagerController::class, 'covidTest'])->name('covidTest');
 
 
-Route::get('/Tester/test/', [TesterController::class, 'test'])->name('test');
-Route::get('/Tester/test/new', [TesterController::class, 'newTest'])->name('newTest');
-Route::post('/Tester/test/new', [TesterController::class, 'saveTest'])->name('saveTest');
+    Route::get('/testers/', [ManagerController::class, 'Testers'])->name('Testers');
+    Route::get('/testers/new', [ManagerController::class, 'newTesters'])->name('newTesters');
+    Route::post('/testers/new', [ManagerController::class, 'saveTesters'])->name('saveTesters');
 
-Route::get('/Tester/test/result/{id}', [TesterController::class, 'newResult'])->name('newResult');
-Route::post('/Tester/test/result/{id}', [TesterController::class, 'saveResult'])->name('saveResult');
-
-
-
-// Router For Patient
-Route::get('/example/', function () {
-    return view('example/index');
+    Route::get('/testkits/', [ManagerController::class, 'testkits'])->name('testkits');
+    Route::get('/testkits/new', [ManagerController::class, 'newtestkits'])->name('newtestkits');
+    Route::post('/testkits/new', [ManagerController::class, 'savetestkits'])->name('savetestkits');
 });
 
-Route::get('/example/login', function () {
-    return view('example/auth/login');
+Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(function () {
+    Route::get('/home', [HomeController::class, 'testerHome'])->name('testerHome');
+    Route::get('/test/', [TesterController::class, 'covidTest'])->name('covidTest');
+    Route::get('/test/new', [TesterController::class, 'newTest'])->name('newTest');
+    Route::post('/test/new', [TesterController::class, 'saveTest'])->name('saveTest');
+
+    Route::get('/test/result/{id}', [TesterController::class, 'newResult'])->name('newResult');
+    Route::post('/test/result/{id}', [TesterController::class, 'saveResult'])->name('saveResult');
 });
 
+Route::prefix('Patient')->middleware(['middleware' => 'role:Tester'])->group(function () {
+    Route::get('/home', [HomeController::class, 'patientHome'])->name('patientHome');
+    Route::get('/test/', [PatientController::class, 'covidTest'])->name('covidTest');
 
-
-Route::get('/example/Manager/Tester/', function () {
-    return view('example/Manager/tester');
 });
 
-Route::get('/example/Manager/Tester/new', function () {
-    return view('example/auth/testerNew');
-});
-
-Route::get('/example/Manager/kit', function () {
-    return view('example/Manager/test');
-});
-
-Route::get('/example/Manager/kit/new', function () {
-    return view('example/Manager/newTestkit');
-});
-
-
-Route::get('/example/Tester/', function () {
-    return view('example/Tester/home');
-});
-
-Route::get('/example/Tester/new', function () {
-    return view('example/Tester/new');
-});
-
-Route::get('/example/Tester/update', function () {
-    return view('example/Tester/new');
-});
-
-Route::get('/example/Tester/result', function () {
-    return view('example/Tester/result');
-});
-
-
-Route::get('/example/Patient/', function () {
-    return view('example/Patient/home');
-});
-
-Route::get('/example/Patient/symptoms', function () {
-    return view('example/auth/patientNew');
-});
