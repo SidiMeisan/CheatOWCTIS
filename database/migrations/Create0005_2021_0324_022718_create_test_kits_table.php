@@ -16,8 +16,8 @@ class CreateTestKitsTable extends Migration
         Schema::create('test_kit', function (Blueprint $table) {
             $table->id();
             $table->foreignId('test_centre_id');
-            $table->string('name');
-            $table->integer('available');
+            $table->string('name')->nullable();
+            $table->integer('available')->nullable();
             $table->timestamps();
         });
     }

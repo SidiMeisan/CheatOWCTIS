@@ -15,7 +15,7 @@ class CreateTestCentresTable extends Migration
     {
         Schema::create('test_centre', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
+            $table->string('Name')->unique();
             $table->timestamps();
         });
     }

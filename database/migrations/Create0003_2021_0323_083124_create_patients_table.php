@@ -16,8 +16,8 @@ class CreatePatientsTable extends Migration
         Schema::create('Patient', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('type');
-            $table->string('symptoms');
+            $table->string('type')->nullable();
+            $table->string('symptoms')->nullable();
         });
     }
 

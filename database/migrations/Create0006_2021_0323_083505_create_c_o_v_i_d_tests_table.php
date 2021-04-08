@@ -19,9 +19,9 @@ class CreateCOVIDTestsTable extends Migration
             $table->foreignId('test_kit_id');
             $table->foreignId('patient_id');
             $table->string('test_id');
-            $table->date('test_date');
-            $table->string('result');
-            $table->string('status');
+            $table->date('test_date')->nullable();
+            $table->string('result')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
