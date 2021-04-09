@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
                                                 <textarea class="form-control"
                                                 name="symptoms" id="symptoms" 
-                                                cols="30" rows="10"></textarea>
+                                                cols="30" rows="10" required></textarea>
                                                 @error('symptoms')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

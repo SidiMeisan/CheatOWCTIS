@@ -55,6 +55,9 @@ Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(fu
 });
 
 Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(function () {
+    Route::get('/', function () {
+        return view('/Tester/home');
+    });
     Route::get('/home', [HomeController::class, 'testerHome'])->name('testerHome');
     Route::get('/test/', [TesterController::class, 'covidTest'])->name('covidTest');
     Route::get('/test/new', [TesterController::class, 'newTest'])->name('newTest');
@@ -64,9 +67,11 @@ Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(func
     Route::post('/test/result/{id}', [TesterController::class, 'saveResult'])->name('saveResult');
 });
 
-Route::prefix('Patient')->middleware(['middleware' => 'role:Tester'])->group(function () {
+Route::prefix('Patient')->middleware(['middleware' => 'role:Patient'])->group(function () {
+    Route::get('/', function () {
+        return view('/Patient/home');
+    });
     Route::get('/home', [HomeController::class, 'patientHome'])->name('patientHome');
     Route::get('/test/', [PatientController::class, 'covidTest'])->name('covidTest');
-
 });
 

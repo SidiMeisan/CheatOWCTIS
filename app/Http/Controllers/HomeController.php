@@ -43,11 +43,11 @@ class HomeController extends Controller
         if($thisUser=="guest"){
             return redirect('pickLevel');
         }elseif($thisUser=="Patient"){
-            return redirect('/Patient/home');
+            return redirect('Patient');
         }elseif($thisUser=="Manager"){
-            return redirect('/Manager');
+            return redirect('Manager');
         }else{
-            return redirect('/Tester/home');
+            return redirect('Tester/home');
         }
     }
 

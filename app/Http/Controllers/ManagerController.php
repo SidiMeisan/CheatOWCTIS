@@ -77,7 +77,7 @@ class ManagerController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:40'],
             'username' => ['required', 'string', 'max:30', 'unique:user'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         $this_centre_officer = centre_officer::where('user_id', '=', $thisUser)
@@ -120,8 +120,8 @@ class ManagerController extends Controller
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         
         $request->validate([
-            'name' => 'required',
-            'Quantity' => 'required',
+            'name' => ['required'],
+            'Quantity' => ['required', 'numeric'],
         ]);
 
         $newKit = new test_kit;
