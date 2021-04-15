@@ -132,4 +132,48 @@ class ManagerController extends Controller
         
         return redirect('Manager/testkits');
     }
+
+
+    public function editTestkits($id)
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Kits = test_kit::find($id);
+        return view('Manager/editTest', ['Kits'=>$Kits]);
+    }
+
+    public function updattestkits(Request $request ,$id)
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $request->validate([
+            'name' => ['required'],
+            'Quantity' => ['required', 'numeric'],
+        ]);
+
+        $Kits = test_kit::find($id);
+        $Kits->name = $request->name;
+        $Kits->available = $request->Quantity;
+        $Kits->save();
+        return redirect('Manager/testkits');
+    }
+
+    public function addTestkits()
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Kits = test_kit::where('test_centre_id','=',$this_centre_officer)
+            ->get();
+        return view('Manager/addTest', ['Kits'=>$Kits]);
+    }
+
+    public function addStock(Request $request)
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $request->validate([
+            'Quantity' => ['required', 'numeric'],
+        ]);
+
+        $Kits = test_kit::find($request->Kits);
+        $Kits->available = $Kits->available + $request->Quantity;
+        $Kits->save();
+        return redirect('Manager/testkits');
+    }
 }

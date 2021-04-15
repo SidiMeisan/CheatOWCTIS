@@ -24,7 +24,9 @@ class TesterController extends Controller
         $Patients = Patient::all();
         
         $this_centre_officer = Auth::user()->officer->test_centre_id;
-        $Kits = test_kit::where('test_centre_id', '=', $this_centre_officer)->get();
+        $Kits = test_kit::where('test_centre_id', '=', $this_centre_officer)
+            ->where('available','>', 15)
+            ->get();
         return view('Tester/new', ['Patients'=>$Patients,'Kits'=>$Kits]);
     }
 
@@ -53,6 +55,10 @@ class TesterController extends Controller
         $newCOVIDTest->result = "-";
         $newCOVIDTest->status = "Checking";
         $newCOVIDTest->save();
+
+        $Kits = test_kit::find($request->Kits);
+        $Kits->available = $Kits->available -1;
+        $Kits->save();
         
         return redirect('Tester/home');
     }

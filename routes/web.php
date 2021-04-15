@@ -52,6 +52,12 @@ Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(fu
     Route::get('/testkits/', [ManagerController::class, 'testkits'])->name('testkits');
     Route::get('/testkits/new', [ManagerController::class, 'newtestkits'])->name('newtestkits');
     Route::post('/testkits/new', [ManagerController::class, 'savetestkits'])->name('savetestkits');
+
+    Route::get('/testkits/edit/{id}', [ManagerController::class, 'editTestkits'])->name('editTestkits');
+    Route::post('/testkits/edit/{id}', [ManagerController::class, 'updattestkits'])->name('updattestkits');
+
+    Route::get('/testkits/add', [ManagerController::class, 'addTestkits'])->name('addTestkits');
+    Route::post('/testkits/add', [ManagerController::class, 'addStock'])->name('addStock');
 });
 
 Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(function () {

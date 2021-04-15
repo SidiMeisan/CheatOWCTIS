@@ -14,8 +14,8 @@ class PatientController extends Controller
 {
     public function covidTest()
     {
-        $this_id = Auth::user()->getID();
+        $this_id = Auth::user()->Patient->id;
         $tests = COVIDTest::where('patient_id', '=', $this_id)->get();
-        return view('Patient/COVIDTest', ['tests'=>$tests]);
+        return view('Patient/history', ['tests'=>$tests]);
     }
 }

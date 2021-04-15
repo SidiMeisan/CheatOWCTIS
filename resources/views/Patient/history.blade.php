@@ -12,18 +12,22 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Test date</th>
+                                            <th>Test Date</th>
+                                            <th>Test Name</th>
                                             <th>Results</th>
                                             <th>Status</th>
+                                            <th>Test Centre</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($tests as $index => $thisTest)
                                         <tr>
-                                            <th scope="row">{{$index}}</th>
+                                            <th scope="row">{{$index+1}}</th>
                                             <td>{{$thisTest->test_date}}</td>
+                                            <td>{{$thisTest->Kits->name}}</td>
                                             <td>{{$thisTest->result}}</td>
                                             <td>{{$thisTest->status}}</td>
+                                            <td>{{$thisTest->Office->Name}}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>

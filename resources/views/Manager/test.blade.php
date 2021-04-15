@@ -15,15 +15,26 @@
                                             <th>Name</th>
                                             <th>Quantity</th>
                                             <th>Status</th>
+                                            <th>#</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($Kits as $data => $Kits)
+                                        
                                         <tr>
                                             <th scope="row">{{$data+1}}</th>
                                             <td>{{$Kits->name}}</td>
                                             <td>{{$Kits->available}}</td>
-                                            <td>-</td>
+                                            <td>@if($Kits->available <= 30 && $Kits->available >5)
+                                                    Ordering new batch
+                                                @endif
+                                                @if($Kits->available > 30 )
+                                                    Available
+                                                @endif
+                                                @if($Kits->available < 5 )
+                                                    Reserve stock
+                                                @endif</td>
+                                            <td><a href="{{url('/Manager/testkits/edit/'.$Kits->id)}}">Edit</a></td>
                                         </tr>
                                         @endforeach
                                         </tbody>
