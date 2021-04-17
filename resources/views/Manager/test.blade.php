@@ -15,7 +15,7 @@
                                             <th>Name</th>
                                             <th>Quantity</th>
                                             <th>Status</th>
-                                            <th>#</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -34,7 +34,7 @@
                                                 @if($Kits->available < 5 )
                                                     Reserve stock
                                                 @endif</td>
-                                            <td><a href="{{url('/Manager/testkits/edit/'.$Kits->id)}}">Edit</a></td>
+                                            <td><a href="{{url('/Manager/testkits/edit/'.$Kits->id)}}" class="btn btn-primary">Edit</a></td>
                                         </tr>
                                         @endforeach
                                         </tbody>
