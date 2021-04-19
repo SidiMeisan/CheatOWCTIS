@@ -54,6 +54,9 @@
                                                 <button type="submit" class="btn btn-primary">
                                                     {{ __('Submit') }}
                                                 </button>
+                                                <a href="{{url('/Manager/testkits/edit/'.$Kits->id.'/delete')}}" class="btn btn-warning">
+                                                    Delete
+                                                </a>
                                             </div>
                                         </div>
                                     </form>

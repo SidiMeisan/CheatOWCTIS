@@ -63,6 +63,38 @@ class TesterController extends Controller
         return redirect('Tester/home');
     }
 
+    public function updateTestForm($id)
+    {
+        $COVIDTest = COVIDTest::find($id);
+        
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+        $Kits = test_kit::where('test_centre_id', '=', $this_centre_officer)
+            ->where('available','>', 15)
+            ->get();
+        
+        return view('Tester/update', ['COVIDTest'=>$COVIDTest,'Kits'=>$Kits]);
+    }
+
+    public function updateTest(Request $request, $id)
+    {
+        $request->validate([
+            'Kits' => 'required',
+            'symptoms' => 'required',
+            'Type' => 'required',
+        ]);
+
+        $thisCOVIDTest = COVIDTest::find($id);
+        $thisCOVIDTest->test_kit_id = $request->Kits;
+        $thisCOVIDTest->save();
+
+        $updatePatient = Patient::find($thisCOVIDTest->patient_id);
+        $updatePatient->symptoms = $request->symptoms;
+        $updatePatient->type = $request->Type;
+        $updatePatient->save();
+        
+        return redirect('Tester/test');
+    }
+
     public function newResult($id)
     {
         $thisCOVIDTest = COVIDTest::find($id);

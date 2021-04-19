@@ -31,6 +31,9 @@
                                                 <a href="{{url('/Tester/test/result/'.$thisTest->id)}}" class="btn btn-primary">
                                                     Result
                                                 </a>
+                                                <a href="{{url('/Tester/test/'.$thisTest->id)}}" class="btn btn-warning">
+                                                    Edit
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach

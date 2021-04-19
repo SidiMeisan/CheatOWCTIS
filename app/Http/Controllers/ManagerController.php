@@ -106,6 +106,7 @@ class ManagerController extends Controller
     {
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Kits = test_kit::where('test_centre_id','=',$this_centre_officer)
+            ->where('available','>',0)
             ->get();
         return view('Manager/test', ['Kits'=>$Kits]);
     }
@@ -121,7 +122,7 @@ class ManagerController extends Controller
         
         $request->validate([
             'name' => ['required'],
-            'Quantity' => ['required', 'numeric'],
+            'Quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
         $newKit = new test_kit;
@@ -130,7 +131,7 @@ class ManagerController extends Controller
         $newKit->available = $request->Quantity;
         $newKit->save();
         
-        return redirect('Manager/testkits');
+        return redirect('Manager/testkits')->with('success', 'newKit');;
     }
 
 
@@ -146,12 +147,22 @@ class ManagerController extends Controller
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $request->validate([
             'name' => ['required'],
-            'Quantity' => ['required', 'numeric'],
+            'Quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
         $Kits = test_kit::find($id);
         $Kits->name = $request->name;
         $Kits->available = $request->Quantity;
+        $Kits->save();
+        return redirect('Manager/testkits');
+    }
+
+    public function deletekit($id)
+    {
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
+
+        $Kits = test_kit::find($id);
+        $Kits->available = -1 ;
         $Kits->save();
         return redirect('Manager/testkits');
     }
@@ -168,7 +179,7 @@ class ManagerController extends Controller
     {
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $request->validate([
-            'Quantity' => ['required', 'numeric'],
+            'Quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
         $Kits = test_kit::find($request->Kits);

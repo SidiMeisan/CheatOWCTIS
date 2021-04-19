@@ -14,4 +14,5 @@
 </body>
 <script type="text/javascript" src="{{url('/assets/scripts/main.js')}}"></script>
 @yield('customejs')
+@include('layouts.Part.alert.modelJs')
 </html>

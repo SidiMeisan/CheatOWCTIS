@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="main-card mb-6 card">
-                                <div class="card-header">New Covid Test
+                                <div class="card-header">Update COVID Test
                                 </div>
                                 <div class="card-body" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
                                     <form method="POST" action="">
@@ -18,14 +18,9 @@
                                             </label>
 
                                             <div class="col-md-6">
-                                                <select name="Patient" id="Patient"
-                                                class="form-control js-patient-single">
-                                                    @foreach($Patients as $Patient)
-                                                    <option value="{{$Patient->id}}">
-                                                        {{$Patient->Users->name}}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="patient" id="patient"
+                                                    value="{{$COVIDTest->Patients->Users->name}}" disabled
+                                                    class="form-control js-kit-single">
 
                                                 @error('Patient')
                                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +39,12 @@
                                                 <select name="Kits" id="Kits"
                                                 class="form-control js-kit-single">
                                                     @foreach($Kits as $Kit)
-                                                    <option value="{{$Kit->id}}">{{$Kit->name}}</option>
+                                                    <option value="{{$Kit->id}}"
+                                                        @if($Kit->id==$COVIDTest->test_kit_id)
+                                                            selected
+                                                        @endif>
+                                                        {{$Kit->name}}
+                                                    </option>
                                                     @endforeach
                                                 </select>
 
@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
                                                 <textarea class="form-control"
                                                 name="symptoms" id="symptoms" 
-                                                cols="30" rows="10" required></textarea>
+                                                cols="30" rows="10" required>{{$COVIDTest->Patients->symptoms}}</textarea>
                                                 @error('symptoms')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -81,11 +81,36 @@
                                             <div class="col-md-6">
                                                 <select name="Type" id="Type"
                                                 class="form-control js-symptoms-multiple">
-                                                    <option value="Returnee">Returnee</option>
-                                                    <option value="Quarantined">Quarantined</option>
-                                                    <option value="Contact">Close Contact</option>
-                                                    <option value="Infected">Infected</option>
-                                                    <option value="Suspected">Suspected</option>
+                                                    <option value="Returnee"
+                                                        @if($COVIDTest->Patients->type=="Returnee")
+                                                            selected
+                                                        @endif>
+                                                        Returnee
+                                                    </option>
+                                                    <option value="Quarantined"
+                                                        @if($COVIDTest->Patients->type=="Quarantined")
+                                                            selected
+                                                        @endif>
+                                                        Quarantined
+                                                    </option>
+                                                    <option value="Contact"
+                                                        @if($COVIDTest->Patients->type=="Contact")
+                                                            selected
+                                                        @endif>
+                                                        Close Contact
+                                                    </option>
+                                                    <option value="Infected"
+                                                        @if($COVIDTest->Patients->type=="Infected")
+                                                            selected
+                                                        @endif>
+                                                        Infected
+                                                    </option>
+                                                    <option value="Suspected"
+                                                        @if($COVIDTest->Patients->type=="Suspected")
+                                                            selected
+                                                        @endif>
+                                                        Suspected
+                                                    </option>
                                                 </select>
 
                                                 @error('Type')
