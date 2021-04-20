@@ -33,7 +33,7 @@
         @endif
         
         @if(session()->get('success')=="DeleteKit")
-        <div class="toast toast-warning" id="DeleteKit" aria-live="assertive" style="">
+        <div class="toast toast-error" id="DeleteKit" aria-live="assertive" style="">
             <button type="button" class="toast-close-button" role="button"
             onclick="document.getElementById('DeleteKit').style.display = 'none'; return false;">×</button>
             <div class="toast-message">COVID Test Kit Deleted</div>
