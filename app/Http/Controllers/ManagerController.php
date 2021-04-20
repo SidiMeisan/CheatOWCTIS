@@ -99,7 +99,7 @@ class ManagerController extends Controller
         $updateUser->as = "Tester";
         $updateUser->save();
         
-        return redirect('Manager/testers');
+        return redirect('Manager/testers')->with('success', 'newTester');
     }
 
     public function testkits()
@@ -131,7 +131,7 @@ class ManagerController extends Controller
         $newKit->available = $request->Quantity;
         $newKit->save();
         
-        return redirect('Manager/testkits')->with('success', 'newKit');;
+        return redirect('Manager/testkits')->with('success', 'newKit');
     }
 
 
@@ -154,7 +154,7 @@ class ManagerController extends Controller
         $Kits->name = $request->name;
         $Kits->available = $request->Quantity;
         $Kits->save();
-        return redirect('Manager/testkits');
+        return redirect('Manager/testkits')->with('success', 'editKit');
     }
 
     public function deletekit($id)
@@ -164,7 +164,7 @@ class ManagerController extends Controller
         $Kits = test_kit::find($id);
         $Kits->available = -1 ;
         $Kits->save();
-        return redirect('Manager/testkits');
+        return redirect('Manager/testkits')->with('success', 'DeleteKit');
     }
 
     public function addTestkits()
@@ -185,6 +185,6 @@ class ManagerController extends Controller
         $Kits = test_kit::find($request->Kits);
         $Kits->available = $Kits->available + $request->Quantity;
         $Kits->save();
-        return redirect('Manager/testkits');
+        return redirect('Manager/testkits')->with('success', 'StockKit');
     }
 }

@@ -60,7 +60,7 @@ class TesterController extends Controller
         $Kits->available = $Kits->available -1;
         $Kits->save();
         
-        return redirect('Tester/home');
+        return redirect('Tester/test')->with('success', 'newCOVIDTest');
     }
 
     public function updateTestForm($id)
@@ -92,7 +92,7 @@ class TesterController extends Controller
         $updatePatient->type = $request->Type;
         $updatePatient->save();
         
-        return redirect('Tester/test');
+        return redirect('Tester/test')->with('success', 'updateCOVIDTest');
     }
 
     public function newResult($id)
@@ -115,6 +115,6 @@ class TesterController extends Controller
         $updateThis->result = $request->result;
         $updateThis->status = $request->status;
         $updateThis->save();
-        return redirect('Tester/home');
+        return redirect('Tester/test')->with('success', 'updateResult');
     }
 }
