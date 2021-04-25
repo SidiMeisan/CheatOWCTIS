@@ -36,7 +36,7 @@
                 <li>
                     <a href="{{url('Patient/test/')}}" class="mm-active">
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
-                        Test Results
+                        Testing History
                     </a>
                 </li>
             </ul>
