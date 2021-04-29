@@ -23,6 +23,7 @@ class centre_officer extends Model
         'user_id',
         'test_centre_id',
         'position',
+        'status',
     ];
 
     public $timestamps = false;

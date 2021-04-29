@@ -23,7 +23,7 @@ class ManagerController extends Controller
         $this->middleware('auth');
     }
 
-    public function profile(){
+    public function profileManager(){
         $thisUser = Auth::user()->getID();
         $officer = centre_officer::where('user_id', '=', $thisUser)
             ->first();

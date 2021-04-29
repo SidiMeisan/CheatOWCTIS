@@ -12,6 +12,13 @@ use App\Models\COVIDTest;
 
 class TesterController extends Controller
 {
+    public function profileTester(){
+        $thisUser = Auth::user()->getID();
+        $officer = centre_officer::where('user_id', '=', $thisUser)
+            ->first();
+        return view('Tester/profile', ['officer'=>$officer]);
+    }
+
     public function covidTest()
     {
         $this_centre_officer = Auth::user()->officer->test_centre_id;

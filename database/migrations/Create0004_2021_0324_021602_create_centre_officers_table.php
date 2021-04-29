@@ -19,6 +19,7 @@ class CreateCentreOfficersTable extends Migration
             $table->foreignId('test_centre_id');
             /* position 1 for Manager adn 2 for Tester*/
             $table->tinyInteger('position')->default('1');
+            $table->string('status')->default('Active');
         });
     }
 

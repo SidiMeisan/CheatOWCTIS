@@ -6,7 +6,7 @@
     - Posisi
     - Test Centre name 
 -->
-@extends('layouts.manager')
+@extends('layouts.patient')
 @section('content')
     <div class="app-main__outer">
         <div class="app-main__inner">
@@ -28,9 +28,9 @@
                                         <br>
                                         Position: <b class="card-title">{{Auth::user()->as}}</b>
                                         <br>
-                                        Test Centre: <b class="card-title">{{$officer->Centre->Name}}</b>
+                                        Type: <b class="card-title">{{Auth::user()->Patient->type}}</b>
                                         <br>
-                                        Status: <b class="card-title">{{$officer->status}}</b>
+                                        Symptoms: <b class="card-title">{{Auth::user()->Patient->symptoms}}</b>
                                     </div> 
                                 </div>
                             </div>

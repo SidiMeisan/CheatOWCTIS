@@ -40,7 +40,7 @@ Route::post('/Manager/new', [ManagerController::class, 'saveManager'])->name('sa
 
 
 Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(function () {
-    Route::get('/profile', [ManagerController::class, 'Profile'])->name('Profile');
+    Route::get('/profile', [ManagerController::class, 'profileManager'])->name('profileManager');
 
     Route::get('/', [HomeController::class, 'Manager'])->name('Manager');
     Route::get('/home', [HomeController::class, 'managerHome'])->name('managerHome');
@@ -65,6 +65,7 @@ Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(fu
 });
 
 Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(function () {
+    Route::get('/profile', [TesterController::class, 'profileTester'])->name('profileTester');
     Route::get('/', function () {
         return view('/Tester/home');
     });
@@ -81,6 +82,7 @@ Route::prefix('Tester')->middleware(['middleware' => 'role:Tester'])->group(func
 });
 
 Route::prefix('Patient')->middleware(['middleware' => 'role:Patient'])->group(function () {
+    Route::get('/profile', [PatientController::class, 'profilePatient'])->name('profilePatient');
     Route::get('/', function () {
         return view('/Patient/home');
     });

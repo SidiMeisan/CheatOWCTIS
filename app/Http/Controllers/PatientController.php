@@ -18,4 +18,8 @@ class PatientController extends Controller
         $tests = COVIDTest::where('patient_id', '=', $this_id)->get();
         return view('Patient/history', ['tests'=>$tests]);
     }
+
+    public function profilePatient(){
+        return view('Patient/profile');
+    }
 }
