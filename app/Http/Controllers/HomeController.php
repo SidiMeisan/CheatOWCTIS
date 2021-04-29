@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Patient;
 use App\Models\centre_officer;
 use App\Models\test_centre;
+use App\Models\test_kit;
 use App\Models\COVIDTest;
 
 
@@ -52,7 +53,12 @@ class HomeController extends Controller
     }
 
     public function formPick(){
-        return view('pickLevel');
+        $thisUser = Auth::user()->as;
+        if ($thisUser=="guest"){
+            return view('pickLevel');
+        }else{
+            return redirect('/home');
+        }
     }
 
     public function Pick(Request $request){
@@ -94,6 +100,13 @@ class HomeController extends Controller
     }
 
     Public function managerHome(){
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         return view('Manager/home');
     }
     // end manager section 

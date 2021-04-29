@@ -64,13 +64,27 @@ class ManagerController extends Controller
 
     public function covidTest()
     {
-        $this_centre_officer = Auth::user()->officer->test_centre_id;
-        $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
-        return view('Manager/COVIDTest', ['tests'=>$tests]);
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }else{
+            $this_centre_officer = Auth::user()->officer->test_centre_id;
+            $tests = COVIDTest::where('centre_office_id', '=', $this_centre_officer)->get();
+            return view('Manager/COVIDTest', ['tests'=>$tests]);
+        }
     }
 
     public function Testers()
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Testers = centre_officer::where('test_centre_id','=',$this_centre_officer)
             ->wherehas('Users',function($q){
@@ -82,6 +96,13 @@ class ManagerController extends Controller
 
     public function newTesters()
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         return view('Manager/testerNew');
     }
 
@@ -119,6 +140,13 @@ class ManagerController extends Controller
 
     public function testkits()
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Kits = test_kit::where('test_centre_id','=',$this_centre_officer)
             ->where('available','>',0)
@@ -128,6 +156,13 @@ class ManagerController extends Controller
 
     public function newtestkits()
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         return view('Manager/newTestkit');
     }
 
@@ -152,6 +187,13 @@ class ManagerController extends Controller
 
     public function editTestkits($id)
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Kits = test_kit::find($id);
         return view('Manager/editTest', ['Kits'=>$Kits]);
@@ -184,6 +226,13 @@ class ManagerController extends Controller
 
     public function addTestkits()
     {
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+        
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Kits = test_kit::where('test_centre_id','=',$this_centre_officer)
             ->where('available','>',0)
