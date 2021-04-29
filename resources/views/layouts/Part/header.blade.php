@@ -65,10 +65,17 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true" 
                                     class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" 
+                                    <a tabindex="0" 
+                                        @if(Auth::user()->as == "Patient")
+                                            href="{{url('/Patient/profile')}}"
+                                        @elseif(Auth::user()->as == "Manager")
+                                            href="{{url('/Manager/profile')}}"
+                                        @elseif(Auth::user()->as == "Tester")
+                                            href="{{url('/Tester/profile')}}"
+                                        @endif 
                                         class="dropdown-item">
                                         User Account
-                                    </button>
+                                    </a>
                                     <a href="{{url('/logout')}}" tabindex="0" 
                                         class="dropdown-item">
                                         Logout

@@ -21,6 +21,6 @@ class test_centre extends Model
      */
     
     protected $fillable = [
-        'name',
+        'Name',
     ];
 }

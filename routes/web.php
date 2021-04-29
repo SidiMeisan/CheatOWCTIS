@@ -40,6 +40,8 @@ Route::post('/Manager/new', [ManagerController::class, 'saveManager'])->name('sa
 
 
 Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(function () {
+    Route::get('/profile', [ManagerController::class, 'Profile'])->name('Profile');
+
     Route::get('/', [HomeController::class, 'Manager'])->name('Manager');
     Route::get('/home', [HomeController::class, 'managerHome'])->name('managerHome');
     Route::get('/test', [ManagerController::class, 'covidTest'])->name('covidTest');

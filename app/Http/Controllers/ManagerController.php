@@ -13,7 +13,22 @@ use App\Models\COVIDTest;
 
 class ManagerController extends Controller
 {
-    //
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function profile(){
+        $thisUser = Auth::user()->getID();
+        $officer = centre_officer::where('user_id', '=', $thisUser)
+            ->first();
+        return view('Manager/profile', ['officer'=>$officer]);
+    }
 
     public function newManager(){
         $thisUser = Auth::user()->getID();
@@ -35,7 +50,7 @@ class ManagerController extends Controller
         ]);
 
         $newCentre = new test_centre;
-        $newCentre->name = $request->name;
+        $newCentre->Name = $request->name;
         $newCentre->save();
 
         $newOfficer = new centre_officer;
