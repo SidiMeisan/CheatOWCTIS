@@ -32,6 +32,51 @@
                                         </div>
 
                                         <div class="form-group row">
+                                            <label for="gender" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Gender') }}
+                                            </label>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" id="male" name="gender" value="male" 
+                                                        class="form-check-input"> 
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="position-relative form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" id="female" name="gender" value="female" 
+                                                        class="form-check-input"> 
+                                                        Female
+                                                    </label>
+                                                </div>
+                                                @error('gender')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="address" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Address') }}
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input id="address" type="text" 
+                                                    class="form-control @error('address') is-invalid @enderror" name="address" 
+                                                    value="{{ old('address') }}" required 
+                                                    autocomplete="address" autofocus>
+
+                                                @error('address')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
                                             <label for="username" class="col-md-4 col-form-label text-md-right">
                                                 {{ __('Username') }}
                                             </label>
@@ -64,6 +109,17 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
+                                                {{ __('Confirm Password') }}
+                                            </label>
+
+                                            <div class="col-md-6">
+                                                <input id="password-confirm" type="password" 
+                                                class="form-control" name="password_confirmation" required>
                                             </div>
                                         </div>
 

@@ -113,7 +113,9 @@ class ManagerController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:40'],
             'username' => ['required', 'string', 'max:30', 'unique:user'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required'],
+            'address' => ['required'],
         ]);
 
         $this_centre_officer = centre_officer::where('user_id', '=', $thisUser)
@@ -121,6 +123,8 @@ class ManagerController extends Controller
 
         $newUser = new User;
         $newUser->name = $request->name;
+        $newUser->gender = $request->gender;
+        $newUser->address = $request->address;
         $newUser->username = $request->username;
         $newUser->password = Hash::make($request->password);
         $newUser->save();

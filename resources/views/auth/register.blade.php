@@ -38,14 +38,14 @@
                                             <div class="col-md-6">
                                                 <div class="position-relative form-check">
                                                     <label class="form-check-label">
-                                                        <input type="checkbox" id="male" name="gender" value="male" 
+                                                        <input type="radio" id="male" name="gender" value="male" 
                                                         class="form-check-input"> 
                                                         Male
                                                     </label>
                                                 </div>
                                                 <div class="position-relative form-check">
                                                     <label class="form-check-label">
-                                                        <input type="checkbox" id="female" name="gender" value="female" 
+                                                        <input type="radio" id="female" name="gender" value="female" 
                                                         class="form-check-input"> 
                                                         Female
                                                     </label>
