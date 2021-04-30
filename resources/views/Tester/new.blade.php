@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="main-card mb-6 card">
-                                <div class="card-header">New Covid Test
+                                <div class="card-header">Record New Covid Test
                                 </div>
                                 <div class="card-body" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
                                     <form method="POST" action="">

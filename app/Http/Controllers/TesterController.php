@@ -45,7 +45,7 @@ class TesterController extends Controller
         $request->validate([
             'Patient' => 'required',
             'Kits' => 'required',
-            'symptoms' => 'required',
+            'symptoms' => ['required', 'max:200', 'min:1'],
             'Type' => 'required',
         ]);
 
@@ -71,13 +71,23 @@ class TesterController extends Controller
     }
 
     public function updateTestForm($id)
-    {
-        $COVIDTest = COVIDTest::find($id);
-        
+    {   
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Kits = test_kit::where('test_centre_id', '=', $this_centre_officer)
             ->where('available','>', 15)
             ->get();
+
+        $count_Test = COVIDTest::where('id','=', $id)
+            ->where('centre_office_id', '=', $this_centre_officer)
+            ->get()->count();
+
+        if($count_Test == 0){
+            return redirect('/');
+        }
+        
+        $COVIDTest = COVIDTest::where('id','=', $id)
+            ->where('centre_office_id', '=', $this_centre_officer)
+            ->first();
         
         return view('Tester/update', ['COVIDTest'=>$COVIDTest,'Kits'=>$Kits]);
     }
@@ -86,7 +96,7 @@ class TesterController extends Controller
     {
         $request->validate([
             'Kits' => 'required',
-            'symptoms' => 'required',
+            'symptoms' => ['required', 'max:200', 'min:1'],
             'Type' => 'required',
         ]);
 
@@ -103,8 +113,19 @@ class TesterController extends Controller
     }
 
     public function newResult($id)
-    {
-        $thisCOVIDTest = COVIDTest::find($id);
+    {   
+        $count_Test = COVIDTest::where('id','=', $id)
+            ->where('centre_office_id', '=', $this_centre_officer)
+            ->get()->count();
+
+        if($count_Test == 0){
+            return redirect('/');
+        }
+        
+        $thisCOVIDTest = COVIDTest::where('id','=', $id)
+            ->where('centre_office_id', '=', $this_centre_officer)
+            ->first();
+
         return view('Tester/result',['thisCOVIDTest'=>$thisCOVIDTest]);
     }
 

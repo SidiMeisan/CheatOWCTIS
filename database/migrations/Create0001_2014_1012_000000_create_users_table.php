@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('as')->default('guest');
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }

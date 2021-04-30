@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="main-card mb-6 card">
-                                <div class="card-header">New Tester
+                                <div class="card-header">Register New Tester
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="{{route('saveTesters')}}">

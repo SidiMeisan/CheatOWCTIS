@@ -199,7 +199,16 @@ class ManagerController extends Controller
         }
 
         $this_centre_officer = Auth::user()->officer->test_centre_id;
-        $Kits = test_kit::find($id);
+        $count_Kits = test_kit::where('id','=', $id)
+            ->where('test_centre_id', '=', $this_centre_officer)
+            ->get()->count();
+        if($count_Kits == 0){
+            return redirect('/');
+        }
+
+        $Kits = test_kit::where('id','=', $id)
+            ->where('test_centre_id', '=', $this_centre_officer)
+            ->first();    
         return view('Manager/editTest', ['Kits'=>$Kits]);
     }
 

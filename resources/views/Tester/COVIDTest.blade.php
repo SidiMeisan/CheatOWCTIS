@@ -11,18 +11,18 @@
                                     <table class="mb-0 table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>Patient</th>
                                             <th>Test date</th>
                                             <th>Results</th>
                                             <th>Status</th>
-                                            <th>#</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($tests as $index => $thisTest)
                                         <tr>
-                                            <th scope="row">{{$index}}</th>
+                                            <th scope="row">{{$index+1}}</th>
                                             <td>{{$thisTest->Patients->Users->name}}</td>
                                             <td>{{$thisTest->test_date}}</td>
                                             <td>{{$thisTest->result}}</td>

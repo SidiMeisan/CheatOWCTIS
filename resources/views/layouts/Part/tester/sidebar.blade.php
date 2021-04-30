@@ -42,7 +42,7 @@
                 <li>
                     <a href="{{url('Tester/test/new')}}" class="">
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
-                        New Test
+                        Record New Test
                     </a>
                 </li>
             </ul>

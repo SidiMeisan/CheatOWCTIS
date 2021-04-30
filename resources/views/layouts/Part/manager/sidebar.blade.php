@@ -50,7 +50,7 @@
                 <li>
                     <a href="{{url('/Manager/testers/new')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
-                        New Testers
+                        Register New Testers
                     </a>
                 </li>
                 
@@ -64,7 +64,7 @@
                 <li>
                     <a href="{{url('/Manager/testkits/new')}}">
                         <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
-                        New Test Kits
+                        Create New Test Kits
                     </a>
                 </li>
                 <li>

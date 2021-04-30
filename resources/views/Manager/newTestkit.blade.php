@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="main-card mb-6 card">
-                                <div class="card-header">New Test Kit
+                                <div class="card-header">Create New Test Kit
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="#">
@@ -52,7 +52,7 @@
                                         <div class="form-group row mb-0">
                                             <div class="col-md-8 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">
-                                                    {{ __('Submit') }}
+                                                    {{ __('Create') }}
                                                 </button>
                                             </div>
                                         </div>
