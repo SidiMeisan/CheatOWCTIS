@@ -16,6 +16,14 @@
         </div>
         @endif
 
+        @if(session()->get('success')=="deleteTester")
+        <div class="toast toast-success" id="newKits" aria-live="assertive" style="">
+            <button type="button" class="toast-close-button" role="button"
+            onclick="document.getElementById('newKits').style.display = 'none'; return false;">×</button>
+            <div class="toast-message">Tester Removed</div>
+        </div>
+        @endif
+
         @if(session()->get('success')=="editKit")
         <div class="toast toast-info" id="editKit" aria-live="assertive" style="">
             <button type="button" class="toast-close-button" role="button"

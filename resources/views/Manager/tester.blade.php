@@ -15,6 +15,7 @@
                                             <th>Name</th>
                                             <th>Username</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -24,7 +25,13 @@
                                             <th scope="row">{{$data+1}}</th>
                                             <td>{{$Tester->Users->name}}</td>
                                             <td>{{$Tester->Users->username}}</td>
-                                            <td>-</td>
+                                            <td>{{$Tester->status}}</td>
+                                            <td>
+                                                <a class="btn btn-warning"
+                                                    href="{{url('/Manager/testers/'.$Tester->id.'/delete')}}">
+                                                    Delete
+                                                </a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                         </tbody>

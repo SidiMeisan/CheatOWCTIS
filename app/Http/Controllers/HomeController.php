@@ -121,6 +121,13 @@ class HomeController extends Controller
     // tester  section
     
     Public function testerHome(){
+        $thisUser = Auth::user()->getID();
+        $centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->first();
+            
+        if($centre_officer->status == 'Deactivated'){
+            return redirect('/logout');
+        }
         return view('Tester/home');
     }
     // end tester  section

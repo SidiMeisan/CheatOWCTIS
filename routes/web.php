@@ -49,6 +49,7 @@ Route::prefix('Manager')->middleware(['middleware' => 'role:Manager'])->group(fu
     Route::get('/testers/', [ManagerController::class, 'Testers'])->name('Testers');
     Route::get('/testers/new', [ManagerController::class, 'newTesters'])->name('newTesters');
     Route::post('/testers/new', [ManagerController::class, 'saveTesters'])->name('saveTesters');
+    Route::get('/testers/{id}/delete', [ManagerController::class, 'deleteTesters'])->name('deleteTesters');
 
     Route::get('/testkits/', [ManagerController::class, 'testkits'])->name('testkits');
     Route::get('/testkits/new', [ManagerController::class, 'newtestkits'])->name('newtestkits');

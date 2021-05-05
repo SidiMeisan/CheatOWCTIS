@@ -87,6 +87,7 @@ class ManagerController extends Controller
 
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $Testers = centre_officer::where('test_centre_id','=',$this_centre_officer)
+            ->where('status','=','Active')
             ->wherehas('Users',function($q){
                 $q->where('as','=','Tester');
             })
@@ -210,6 +211,21 @@ class ManagerController extends Controller
             ->where('test_centre_id', '=', $this_centre_officer)
             ->first();    
         return view('Manager/editTest', ['Kits'=>$Kits]);
+    }
+
+    public function deleteTesters($id){
+        $thisUser = Auth::user()->getID();
+        $count_centre_officer = centre_officer::where('user_id', '=', $thisUser)
+            ->get()->count();
+        if($count_centre_officer == 0){
+            return view('Manager/managerNew');
+        }
+
+        $officer = centre_officer::find($id);
+        $officer->status = 'Deactivated';
+        $officer->save();
+        
+        return redirect('Manager/testers')->with('success', 'deleteTester');
     }
 
     public function updattestkits(Request $request ,$id)

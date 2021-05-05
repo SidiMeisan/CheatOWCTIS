@@ -114,6 +114,7 @@ class TesterController extends Controller
 
     public function newResult($id)
     {   
+        $this_centre_officer = Auth::user()->officer->test_centre_id;
         $count_Test = COVIDTest::where('id','=', $id)
             ->where('centre_office_id', '=', $this_centre_officer)
             ->get()->count();
