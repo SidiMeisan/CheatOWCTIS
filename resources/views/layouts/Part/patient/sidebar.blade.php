@@ -34,7 +34,10 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Test Covid</li>
                 <li>
-                    <a href="{{url('Patient/test/')}}" class="mm-active">
+                    <a href="{{url('Patient/test/')}}" 
+                        @if (Request::path() == 'Patient/test/')
+                            class="mm-active"
+                        @endif>
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         Testing History
                     </a>

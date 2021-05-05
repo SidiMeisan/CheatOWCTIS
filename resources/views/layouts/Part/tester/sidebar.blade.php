@@ -34,13 +34,26 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Test Covid</li>
                 <li>
-                    <a href="{{url('Tester/test/')}}" class="mm-active">
+                    <a href="{{url('Tester/test/')}}"
+                        @if (Route::current()->getName() == 'covidTest')
+                            class="mm-active"
+                        @endif
+                        @if (Route::current()->getName() == 'updateTestForm')
+                            class="mm-active"
+                        @endif
+                        @if (Route::current()->getName() == 'newResult')
+                            class="mm-active"
+                        @endif
+                        >
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         Test Results
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('Tester/test/new')}}" class="">
+                    <a href="{{url('Tester/test/new')}}" 
+                        @if (Route::current()->getName() == 'newTest')
+                            class="mm-active"
+                        @endif>
                         <!-- <i class="metismenu-icon pe-7s-rocket"></i> -->
                         Record New Test
                     </a>
