@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
+use DateInterval;
 
 class COVIDTest extends Model
 {
@@ -42,5 +44,37 @@ class COVIDTest extends Model
     public function Office()
     {
         return $this->belongsTo(test_centre::class, 'centre_office_id', 'id');
+    }
+
+    public function TestDate()
+    {
+        $oldDate = $this->test_date;
+        $newDate = new DateTime($oldDate);
+        $fomattedDate = $newDate->format('d-m-Y');
+        return $fomattedDate;
+    }
+
+    public function Expired(){
+        $oldDate = $this->test_date;
+        $newDate = new DateTime($oldDate);
+        $newDate->add(new DateInterval('P14D')); // P1D means a period of 1 day
+        $fomattedDate = $newDate->format('d-m-Y');
+        return $fomattedDate;
+    }
+
+    public function testExpired()
+    {
+        if ($this->status=='Done') {
+            return true;
+        }else{
+            $oldDate = $this->test_date;
+            $newDate = new DateTime($oldDate);
+            $newDate->add(new DateInterval('P14D')); // P1D means a period of 1 day
+
+            if (new DateTime()>$newDate){
+                return true;
+            }
+            return false;
+        }
     }
 }

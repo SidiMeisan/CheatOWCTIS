@@ -21,16 +21,24 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @php
+                                            $i = 0;
+                                        @endphp
                                         @foreach($tests as $index => $thisTest)
+                                        @if($thisTest->testExpired()==false)
                                         <tr>
-                                            <th scope="row">{{$index+1}}</th>
-                                            <td>{{$thisTest->test_date}}</td>
+                                            @php
+                                                $i = $i+1;
+                                            @endphp
+                                            <th scope="row">{{$i}}</th>
+                                            <td>{{$thisTest->TestDate()}}</td>
                                             <td>{{$thisTest->Kits->name}}</td>
                                             <td>{{$thisTest->result}}</td>
                                             <td>{{$thisTest->status}}</td>
                                             <td>{{$thisTest->Office->Name}}</td>
-                                            <td></td>
+                                            <td>{{$thisTest->Expired()}}</td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -50,16 +58,24 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @php
+                                            $i = 0;
+                                        @endphp
                                         @foreach($tests as $index => $thisTest)
+                                        @if($thisTest->testExpired()==true)
                                         <tr>
-                                            <th scope="row">{{$index+1}}</th>
-                                            <td>{{$thisTest->test_date}}</td>
+                                            @php
+                                                $i = $i+1;
+                                            @endphp
+                                            <th scope="row">{{$i}}</th>
+                                            <td>{{$thisTest->TestDate()}}</td>
                                             <td>{{$thisTest->Kits->name}}</td>
                                             <td>{{$thisTest->result}}</td>
                                             <td>{{$thisTest->status}}</td>
                                             <td>{{$thisTest->Office->Name}}</td>
-                                            <td></td>
+                                            <td>{{$thisTest->Expired()}}</td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                         </tbody>
                                     </table>

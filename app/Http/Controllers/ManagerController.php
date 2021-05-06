@@ -177,7 +177,7 @@ class ManagerController extends Controller
         
         $request->validate([
             'name' => ['required'],
-            'Quantity' => ['required', 'numeric', 'min:1'],
+            'Quantity' => ['required', 'numeric', 'min:1', 'min:1000'],
         ]);
 
         $newKit = new test_kit;
@@ -233,7 +233,7 @@ class ManagerController extends Controller
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $request->validate([
             'name' => ['required'],
-            'Quantity' => ['required', 'numeric', 'min:1'],
+            'Quantity' => ['required', 'numeric', 'min:1', 'min:1000'],
         ]);
 
         $Kits = test_kit::find($id);
@@ -273,7 +273,7 @@ class ManagerController extends Controller
     {
         $this_centre_officer = Auth::user()->officer->test_centre_id;
         $request->validate([
-            'Quantity' => ['required', 'numeric', 'min:1'],
+            'Quantity' => ['required', 'numeric', 'min:1', 'min:1000'],
         ]);
 
         $Kits = test_kit::find($request->Kits);
