@@ -66,6 +66,8 @@ class COVIDTest extends Model
     {
         if ($this->status=='Done') {
             return true;
+        }elseif ($this->status=='Cancel'){
+            return true;
         }else{
             $oldDate = $this->test_date;
             $newDate = new DateTime($oldDate);
